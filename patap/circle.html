@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>circles</title>
+	<link rel="stylesheet" type="text/css" href="circle.css">
+	<script type="text/javascript" src="paper-full.js"></script>
+	<script type="text/javascript" src="howler.js"></script>
+	<script type="text/paperscript" canvas="myCanvas">
+		var keydata={
+		a:{
+		color:"purple",
+		sound:new Howl({
+		src: ['sound/clay.mp3']
+
+	                 })
+	               },
+	               s:{
+		color:"green",
+		sound:new Howl({
+		src: ['sound/confetti.mp3']
+
+	                 })
+	               },
+	               d:{
+		color:"orange",
+		sound:new Howl({
+		src: ['sound/corona.mp3']
+
+	                 })
+	               },
+	               f:{
+		color:"pink",
+		sound:new Howl({
+		src: ['sound/dotted-spiral.mp3']
+
+	                 })
+	               },
+	               l:{
+		color:"green",
+		sound:new Howl({
+		src: ['sound/flash-1.mp3']
+
+	                 })
+	               },
+	               n:{
+		color:"brown",
+		sound:new Howl({
+		src: ['sound/glimmer.mp3']
+
+	                 })
+	               },
+	               b:{
+		color:"purple",
+		sound:new Howl({
+		src: ['sound/flash-2.mp3']
+
+	                 })
+	               },
+	               v:{
+		color:"yellow",
+		sound:new Howl({
+		src: ['sound/ufo.mp3']
+
+	                 })
+	               },
+	       m:{
+		color:"red",
+		sound:new Howl({
+		src: ['sound/bubbles.mp3']
+
+	        })
+	       }
+
+	     }
+	
+
+		var circles=[];
+
+		function onKeyDown(event) {
+		if(keydata[event.key]){
+			var maxPoint=new Point(view.size.width,view.size.height);
+		var randompoint=Point.random();
+		var point=maxPoint*randompoint;
+		var newcircles=new Path.Circle(point,500);
+	    newcircles.fillColor =keydata[event.key].color;
+	    keydata[event.key].sound.play();
+
+	  circles.push(newcircles);
+	}
+
+
+	}
+
+		
+	
+	  function onFrame(event){
+	  for(var i=0;i<circles.length;i++){
+	  circles[i].fillColor.hue +=1;
+	  circles[i].scale(.9);
+	}
+	}
+
+	
+     
+          
+         
+
+</script>
+</head>
+<body>
+	<canvas id="myCanvas" resize></canvas>
+
+</body>
+</html>
